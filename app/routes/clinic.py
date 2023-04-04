@@ -15,7 +15,7 @@ import datetime as dt
 
 
 @app.route('/clinic/map')
-@login_required
+#@login_required
 def clinicMap():
 
     clinics = Clinic.objects()

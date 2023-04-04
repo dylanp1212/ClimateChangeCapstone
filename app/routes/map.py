@@ -6,7 +6,7 @@ import requests
 from flask_login import current_user
 from app.classes.data import Clinic
 from app.classes.forms import ClinicForm
-#from flask_login import login_required
+from flask_login import login_required
 import datetime as dt
 
 @app.route('/map/map')
