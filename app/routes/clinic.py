@@ -12,6 +12,10 @@ from app.classes.data import Clinic
 from app.classes.forms import ClinicForm
 from flask_login import login_required
 import datetime as dt
+#import pandas as pd
+
+#df = pd.read_csv('unionlocations.csv')
+    
 
 
 @app.route('/clinic/map')

@@ -28,15 +28,16 @@
     // It even opens up a popup when you click it!
     {% for clinic in clinics %}
         {% if clinic.lat and clinic.lon %}
-            // Add your fields to the ppup on the next line.
+            // Add your fields to the popup on the next line.
             L.marker(['{{clinic.lat}}', '{{clinic.lon}}']).addTo(map).bindPopup("<strong>{{clinic.name}}<br>{{clinic.streetAddress}}<br>{{clinic.city}},{{clinic.state}}  {{clinic.zipcode}}<br>desc: {{clinic.description}}</strong>")
         {% endif %}
     {% endfor %}
-    // this is a way to add a marker that ALWAYS shows up.
+
+    // this is a way to add a marker that ALWAYS shows up
+    L.marker([37.8455422, -122.2526120]).addTo(map).bindPopup("<strong>Trader Joe's</strong>").openPopup();
     L.marker([37.8323039, -122.2555883]).addTo(map).bindPopup("<strong>Oakland Tech</strong>").openPopup();
-    L.marker([ 37.8455422, -122.2526120]).addTo(map).bindPopup("<strong>Trader Joe's</strong>").openPopup();
 
-
+    
 </script>
 
 {% endblock %}
