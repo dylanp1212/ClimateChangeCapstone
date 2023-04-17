@@ -81,3 +81,25 @@ class Clinic(Document):
     meta = {
         'ordering': ['-createdate']
     }
+
+class Union(Document):
+    author = ReferenceField('User',reverse_delete_rule=CASCADE)
+    createdate = DateTimeField(default=dt.datetime.utcnow)
+    modifydate = DateTimeField()
+    name = StringField()
+    company = StringField()
+    industry = StringField()
+    address = StringField()
+    city = StringField()
+    state = StringField()
+    zipcode = StringField()
+    lat = FloatField()
+    lon = FloatField()
+    unionrep = StringField()
+    conemail = EmailField()
+    conpnumber = IntField()
+    unionizedate = DateTimeField()
+
+    meta = {
+        'ordering': ['-createdate']
+    }
