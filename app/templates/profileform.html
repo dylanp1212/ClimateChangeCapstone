@@ -40,6 +40,14 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+        <p>
+            {{ form.pnumber.label }}<br>
+            {{ form.pnumber() }}<br>
+            {% for error in form.pnumber.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
 
         <p>{{ form.submit() }}</p>
     </form>
