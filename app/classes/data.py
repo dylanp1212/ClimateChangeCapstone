@@ -93,12 +93,14 @@ class Union(Document):
     city = StringField()
     state = StringField()
     zipcode = StringField()
-    lat = FloatField()
-    lon = FloatField()
+    lat = IntField()
+    lon = IntField()
+    unionized = StringField()
+    unionizedate = DateTimeField()
     unionrep = StringField()
     conemail = EmailField()
     conpnumber = IntField()
-    unionizedate = DateTimeField()
+    
 
     meta = {
         'ordering': ['-createdate']
