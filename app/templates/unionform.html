@@ -2,7 +2,9 @@
 {% extends "base.html" %}
 
 {% block body %}
-        <h1 class='text-white'>Form Page Title</h1>
+    <div class='col bg-secondary rounded text-white border border-dark'>
+        <h1 style=font-size:100px>Upload New Workplace</h1>
+    </div>
 
         <!--List all errors in a group at the top-->
         {% for field in form.errors %}

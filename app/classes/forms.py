@@ -45,7 +45,7 @@ class ClinicForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class UnionForm(FlaskForm):
-    name = StringField('Name', validators=[DataRequired()])
+    name = StringField('Name of Workplace', validators=[DataRequired()])
     company = StringField('Company', validators=[DataRequired()])
     industry = StringField('Industry', validators=[DataRequired()])
     address = StringField('Address', validators=[DataRequired()])

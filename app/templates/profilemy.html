@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<h1 class="display-1 text-white">
+<div class='col bg-secondary rounded text-white border border-dark'>
+<h1 style=font-size:100px>
     My Profile
     <a href="/myprofile/edit">
         <img width="40" src="/static/edit.png">
     </a>
 </h1>
+</div>
 <div class="row">
     <div class="col-2 text-white">
         {% if current_user.image %}

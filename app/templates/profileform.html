@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
 {% block body %}
-
-    <h1>Register</h1>
+    <div class='col bg-secondary rounded text-white border border-dark'>
+    <h1 style=font-size:100px>Register</h1>
+    </div>
     <!--enctype is needed to upload files -->
+    <div class='text-white'>
     <form action="" method="post" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
         <p>
@@ -51,5 +53,6 @@
 
         <p>{{ form.submit() }}</p>
     </form>
+    </div>
 
 {% endblock %}
