@@ -54,7 +54,7 @@ class UnionForm(FlaskForm):
     zipcode = IntegerField('Zipcode', validators=[DataRequired(), zipCodeCheck])
     lat = IntegerField('Latitude', validators=[DataRequired()])
     lon = IntegerField('Longitude', validators=[DataRequired()])
-    unionized = SelectField('Have you unionized?', choices=[("Yes","No"),("Yes","No")])
+    unionized = SelectField('Have you unionized?', choices=[("Yes","Yes"),("No","No")])
     unionizedate = DateTimeField('Date unionized', validators=[DataRequired()])
     unionrep = StringField('Name of union rep', validators=[DataRequired()])
     conemail = StringField('Contact Email', validators=[DataRequired(), Email()])
