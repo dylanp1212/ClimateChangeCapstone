@@ -55,7 +55,7 @@
             </p>
             <p>
                 {{ form.state.label }} <br>
-                {{ form.state(size=64) }}
+                {{ form.state() }}
                 {% for error in form.state.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}

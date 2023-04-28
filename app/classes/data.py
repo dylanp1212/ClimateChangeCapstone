@@ -13,7 +13,7 @@ from setuptools import SetuptoolsDeprecationWarning
 from app import app
 from flask import flash
 from flask_login import UserMixin
-from mongoengine import FileField, EmailField, StringField, IntField, ReferenceField, DateTimeField, BooleanField, FloatField, CASCADE
+from mongoengine import FileField, EmailField, StringField, IntField, ReferenceField, DateTimeField, BooleanField, FloatField, DateField, CASCADE
 from flask_mongoengine import Document
 import datetime as dt
 import jwt
@@ -97,7 +97,7 @@ class Union(Document):
     lon = IntField()
     unionized = BooleanField()
     unionname = StringField()
-    unionizedate = DateTimeField()
+    unionizedate = DateField()
     unionrep = StringField()
     conemail = EmailField()
     conpnumber = IntField()
