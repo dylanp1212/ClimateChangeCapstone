@@ -4,12 +4,12 @@ from flask import render_template, flash, redirect, url_for
 from flask_login import current_user
 from app.classes.data import Union
 from app.classes.forms import UnionForm
+from app.classes.data import Workplace
+from app.classes.forms import WorkplaceForm
 from flask_login import login_required
 import datetime as dt
 
-# These routes and functions are for accessing and editing user profiles.
 
-# The first line is what listens for the user to type 'myprofile'
 @app.route('/union/new', methods=['GET', 'POST'])
 @login_required
 def unionNew():
@@ -17,16 +17,54 @@ def unionNew():
     if form.validate_on_submit():
   
         newUnion = Union(
-            subject = form.subject.data,
-            content = form.content.data,
-            tag = form.tag.data,
+            unionname = form.unionname.data,
+            branchname = form.branchname.data,
+            company = form.company.data,
+            industry = form.industry.data,
+            bio = form.bio.data,
+            address = form.address.data,
+            city = form.city.data,
+            state = form.state.data,
+            zipcode = form.zipcode.data,
+            lat = form.lat.data,
+            lon = form.lon.data,
+            unionizedate = form.unionizedate.data,
+            unionrep = form.unionrep.data,
+            conemail = form.conemail.data,
+            conpnumber = form.conpnumber.data,
             author = current_user.id,
-            # This sets the modifydate to the current datetime.
-            modify_date = dt.datetime.utcnow
+            modifydate = dt.datetime.utcnow,
         )
-        # This is a method that saves the data to the mongoDB database.
         newUnion.save()
 
-        return redirect(url_for('union',unionID=newUnion.id))
-    
+        #return redirect(url_for('union',unionID=newUnion.id))
+        return redirect('new')
     return render_template('unionform.html',form=form)
+
+@app.route('/workplace/new', methods=['GET', 'POST'])
+@login_required
+def workplaceNew():
+    form = WorkplaceForm()
+    if form.validate_on_submit():
+  
+        newWorkplace = Workplace(
+            branchname = form.branchname.data,
+            company = form.company.data,
+            industry = form.industry.data,
+            bio = form.bio.data,
+            address = form.address.data,
+            city = form.city.data,
+            state = form.state.data,
+            zipcode = form.zipcode.data,
+            lat = form.lat.data,
+            lon = form.lon.data,
+            conemail = form.conemail.data,
+            conpnumber = form.conpnumber.data,
+            author = current_user.id,
+            modifydate = dt.datetime.utcnow,
+        )
+        newWorkplace.save()
+
+        #return redirect(url_for('union',unionID=newUnion.id))
+        return redirect('new')
+    return render_template('workplaceform.html',form=form)

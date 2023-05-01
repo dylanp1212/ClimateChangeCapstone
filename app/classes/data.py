@@ -86,19 +86,41 @@ class Union(Document):
     author = ReferenceField('User',reverse_delete_rule=CASCADE)
     createdate = DateTimeField(default=dt.datetime.utcnow)
     modifydate = DateTimeField()
-    name = StringField()
+    unionname = StringField()
+    branchname = StringField()
     company = StringField()
     industry = StringField()
+    bio = StringField()
     address = StringField()
     city = StringField()
     state = StringField()
-    zipcode = StringField()
-    lat = IntField()
-    lon = IntField()
-    unionized = BooleanField()
-    unionname = StringField()
+    zipcode = IntField()
+    lat = FloatField()
+    lon = FloatField()
     unionizedate = DateField()
     unionrep = StringField()
+    conemail = EmailField()
+    conpnumber = IntField()
+    
+
+    meta = {
+        'ordering': ['-createdate']
+    }
+
+class Workplace(Document):
+    author = ReferenceField('User',reverse_delete_rule=CASCADE)
+    createdate = DateTimeField(default=dt.datetime.utcnow)
+    modifydate = DateTimeField()
+    branchname = StringField()
+    company = StringField()
+    industry = StringField()
+    bio = StringField()
+    address = StringField()
+    city = StringField()
+    state = StringField()
+    zipcode = IntField()
+    lat = FloatField()
+    lon = FloatField()
     conemail = EmailField()
     conpnumber = IntField()
     

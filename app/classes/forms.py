@@ -6,7 +6,7 @@ from flask_wtf import FlaskForm
 import mongoengine.errors
 from wtforms.validators import URL, Email, DataRequired, ValidationError
 from wtforms.fields.html5 import URLField
-from wtforms import StringField, SubmitField, TextAreaField, IntegerField, SelectField, FileField, BooleanField, DateTimeField
+from wtforms import StringField, SubmitField, TextAreaField, IntegerField, SelectField, FileField, BooleanField, DateTimeField, DateField, FloatField
 
 def zipCodeCheck(form, field):
     if len(field.data) > 5 or len(field.data) < 5:
@@ -45,19 +45,36 @@ class ClinicForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class UnionForm(FlaskForm):
-    name = StringField('Name of Workplace', validators=[DataRequired()])
+    unionname = StringField('Union Name', validators=[DataRequired()])
+    branchname = StringField('Branch Name', validators=[DataRequired()])
     company = StringField('Company', validators=[DataRequired()])
     industry = StringField('Industry', validators=[DataRequired()])
+    bio = TextAreaField('Bio', validators=[DataRequired()])
     address = StringField('Address', validators=[DataRequired()])
     city = StringField('City', validators=[DataRequired()])
     state = SelectField('State', choices=[('AL', 'AL'), ('AK', 'AK'), ('AS', 'AS'), ('AZ', 'AZ'), ('AR', 'AR'), ('CA', 'CA'), ('CO', 'CO'), ('CT', 'CT'), ('DE', 'DE'), ('DC', 'DC'), ('FL', 'FL'), ('GA', 'GA'), ('GU', 'GU'), ('HI', 'HI'), ('ID', 'ID'), ('IL', 'IL'), ('IN', 'IN'), ('IA', 'IA'), ('KS', 'KS'), ('KY', 'KY'), ('LA', 'LA'), ('ME', 'ME'), ('MD', 'MD'), ('MA', 'MA'), ('MI', 'MI'), ('MN', 'MN'), ('MS', 'MS'), ('MO', 'MO'), ('MT', 'MT'), ('NE', 'NE'), ('NV', 'NV'), ('NI', 'NI'), ('NJ', 'NJ'), ('NM', 'NM'), ('NY', 'NY'), ('NC', 'NC'), ('ND', 'ND'), ('MP', 'MP'), ('OH', 'OH'), ('OK', 'OK'), ('OR', 'OR'), ('PA', 'PA'), ('PR', 'PR'), ('RI', 'RI'), ('SC', 'SC'), ('SD', 'SD'), ('TN', 'TN'), ('TX', 'TX'), ('UT', 'UT'), ('VT', 'VT'), ('VA', 'VA'), ('VI', 'VI'), ('WA', 'WA'), ('WV', 'WV'), ('WI', 'WI'), ('WY', 'WY')])
     zipcode = IntegerField('Zipcode', validators=[DataRequired()])
-    lat = IntegerField('Latitude', validators=[DataRequired()])
-    lon = IntegerField('Longitude', validators=[DataRequired()])
-    unionized = BooleanField('Have you unionized?', validators=[DataRequired()])
-    unionname = StringField('Union Name', validators=[DataRequired()])
-    unionizedate = DateTimeField('Date unionized (YYYY-MM-DD)', validators=[DataRequired()])
+    lat = FloatField('Latitude', validators=[DataRequired()])
+    lon = FloatField('Longitude', validators=[DataRequired()])
+    #unionized = BooleanField('Have you unionized?', validators=[DataRequired()])
+    unionizedate = DateField('Date unionized (YYYY-MM-DD)', validators=[DataRequired()])
     unionrep = StringField('Name of union rep', validators=[DataRequired()])
+    conemail = StringField('Contact Email', validators=[DataRequired(), Email()])
+    conpnumber = IntegerField('Contact Phone Number', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
+class WorkplaceForm(FlaskForm):
+    branchname = StringField('Workplace Name', validators=[DataRequired()])
+    company = StringField('Company', validators=[DataRequired()])
+    industry = StringField('Industry', validators=[DataRequired()])
+    bio = TextAreaField('Bio', validators=[DataRequired()])
+    address = StringField('Address', validators=[DataRequired()])
+    city = StringField('City', validators=[DataRequired()])
+    state = SelectField('State', choices=[('AL', 'AL'), ('AK', 'AK'), ('AS', 'AS'), ('AZ', 'AZ'), ('AR', 'AR'), ('CA', 'CA'), ('CO', 'CO'), ('CT', 'CT'), ('DE', 'DE'), ('DC', 'DC'), ('FL', 'FL'), ('GA', 'GA'), ('GU', 'GU'), ('HI', 'HI'), ('ID', 'ID'), ('IL', 'IL'), ('IN', 'IN'), ('IA', 'IA'), ('KS', 'KS'), ('KY', 'KY'), ('LA', 'LA'), ('ME', 'ME'), ('MD', 'MD'), ('MA', 'MA'), ('MI', 'MI'), ('MN', 'MN'), ('MS', 'MS'), ('MO', 'MO'), ('MT', 'MT'), ('NE', 'NE'), ('NV', 'NV'), ('NI', 'NI'), ('NJ', 'NJ'), ('NM', 'NM'), ('NY', 'NY'), ('NC', 'NC'), ('ND', 'ND'), ('MP', 'MP'), ('OH', 'OH'), ('OK', 'OK'), ('OR', 'OR'), ('PA', 'PA'), ('PR', 'PR'), ('RI', 'RI'), ('SC', 'SC'), ('SD', 'SD'), ('TN', 'TN'), ('TX', 'TX'), ('UT', 'UT'), ('VT', 'VT'), ('VA', 'VA'), ('VI', 'VI'), ('WA', 'WA'), ('WV', 'WV'), ('WI', 'WI'), ('WY', 'WY')])
+    zipcode = IntegerField('Zipcode', validators=[DataRequired()])
+    lat = FloatField('Latitude', validators=[DataRequired()])
+    lon = FloatField('Longitude', validators=[DataRequired()])
+    #unionized = BooleanField('Have you unionized?', validators=[DataRequired()])
     conemail = StringField('Contact Email', validators=[DataRequired(), Email()])
     conpnumber = IntegerField('Contact Phone Number', validators=[DataRequired()])
     submit = SubmitField('Submit')
