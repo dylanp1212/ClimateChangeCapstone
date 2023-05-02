@@ -1,0 +1,71 @@
+<!-- This is a blank template.  You can copy this to make a new template page. -->
+
+{% extends 'base.html' %}
+
+{% block body %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0-beta.1/leaflet.css" />
+<div class='col bg-secondary rounded text-white border border-dark'>
+    <h1 style=font-size:100px>{{workplace.branchname}}</h1>
+</div>
+</br>
+<div class='container'>
+<div class='row'>
+    <div class = 'col text-left bg-secondary text-white border border-dark rounded'>
+        <h1 class='display-3'>Bio</h1>
+        <p>
+            {{workplace.bio}}
+        </p>
+    </div>
+    <div class='col rounded border border-dark' id="map" style="height: 300px;"></div>
+</div>
+</div>
+
+</br>
+<div>
+    <div class='col text-left bg-secondary text-white border border-dark rounded'>
+        <h1 class='display-3'>Workplace Info</h1>
+    </div>
+</div>
+<div>
+    <div class='col text-left text-secondary border border-dark rounded'>
+        <p>
+            <span class='fw-bold text-white'>Branch name: </span>{{workplace.branchname}}
+        </p>
+        <p>
+            <span class='fw-bold text-white'>Company: </span>{{workplace.company}}
+        </p>
+        <p>
+            <span class='fw-bold text-white'>Industry: </span>{{workplace.industry}}
+        </p>
+        <p>
+            <span class='fw-bold text-white'>Address: </span>{{workplace.address}} {{workplace.city}}, {{workplace.state}} {{workplace.zipcode}}
+        </p>
+    </div>
+</div>
+<div>
+    <div class='col text-left text-secondary border border-dark rounded'>
+        <p>
+            <span class='fw-bold text-white'>Contact Email: </span>{{workplace.conemail}}
+        </p>
+        <p>
+            <span class='fw-bold text-white'>Contact Phone number: </span>{{workplace.conpnumber}}
+        </p>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0-beta.1/leaflet.js"></script>
+<script type="text/javascript">
+    var map = L.map('map').setView([{{workplace.lat}}, {{workplace.lon}}], 12);
+    
+    var layer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+    });
+    
+    // Now add the layer onto the map
+    map.addLayer(layer);
+
+    L.marker([{{workplace.lat}}, {{workplace.lon}}]).addTo(map).bindPopup('<strong>{{workplace.branchname}}</strong></br>{{workplace.address}}</br>{{workplace.city}}, {{workplace.state}} {{workplace.zipcode}}').openPopup();
+</script>
+
+{% endblock %}
+

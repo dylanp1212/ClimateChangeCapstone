@@ -68,3 +68,34 @@ def workplaceNew():
         #return redirect(url_for('union',unionID=newUnion.id))
         return redirect('new')
     return render_template('workplaceform.html',form=form)
+
+@app.route('/union/display/<unionid>', methods=['GET', 'POST'])
+@login_required
+def displayUnion(unionid):
+    display = Union.objects.get(id=unionid)
+    return render_template('uniondisplay.html',union=display)
+
+@app.route('/workplace/display/<workplaceid>', methods=['GET', 'POST'])
+@login_required
+def displayWorkplace(workplaceid):
+    display = Workplace.objects.get(id=workplaceid)
+    return render_template('workplacedisplay.html',workplace=display)
+
+@app.route('/union/all', methods=['GET', 'POST'])
+@login_required
+def displayAllUnions():
+    unions = Union.objects()
+    return render_template('unionall.html', unions=unions)
+
+@app.route('/workplace/all', methods=['GET', 'POST'])
+@login_required
+def displayAllWorkplace():
+    workplaces = Workplace.objects()
+    return render_template('workplaceall.html', workplaces=workplaces)
+
+@app.route('/map', methods=['GET', 'POST'])
+@login_required
+def map():
+    unions = Union.objects()
+    workplaces = Workplace.objects()
+    return render_template('map.html', unions=unions, workplaces=workplaces)

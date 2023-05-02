@@ -1,0 +1,38 @@
+<!-- This is a blank template.  You can copy this to make a new template page. -->
+
+{% extends 'base.html' %}
+
+{% block body %}
+<div class='col bg-secondary rounded text-white border border-dark'>
+    <h1 style=font-size:100px>Workplaces</h1>
+</div>
+</br>
+
+
+<div class='container'>
+<div class='row'>
+    {% for workplace in workplaces %}
+        <div class='col-4 rounded border border-secondary d-grid'>
+            <p></p>
+            <a class='btn btn-secondary text-white rounded fs-1 text-center' href='display/{{workplace.id}}' role='button'>
+                {{workplace.branchname}}
+            </a>
+            <div class='col text-left text-secondary border border-dark rounded'>
+                <p>
+                    <span class='fw-bold text-white'>Branch name: </span>{{workplace.branchname}}
+                </p>
+                <p>
+                    <span class='fw-bold text-white'>Company: </span>{{workplace.company}}
+                </p>
+                <p>
+                    <span class='fw-bold text-white'>Industry: </span>{{workplace.industry}}
+                </p>
+                <p>
+                    <span class='fw-bold text-white'>Address: </span>{{workplace.address}} {{workplace.city}}, {{workplace.state}} {{workplace.zipcode}}
+                </p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+</div>
+{% endblock %}
