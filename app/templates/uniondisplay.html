@@ -7,6 +7,11 @@
 <div class='col bg-secondary rounded text-white border border-dark'>
     <h1 style=font-size:100px>{{union.unionname}}</h1>
 </div>
+{% if union.author == current_user %}
+<div class='text-end'>
+    <a class='btn border border-secondary text-secondary text-center' role='button' href='/union/edit/{{union.id}}'>Edit Union</a>
+</div>
+{% endif %}
 </br>
 <div class='container'>
 <div class='row'>

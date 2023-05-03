@@ -38,8 +38,8 @@ def unionNew():
         newUnion.save()
 
         #return redirect(url_for('union',unionID=newUnion.id))
-        return redirect('new')
-    return render_template('unionform.html',form=form)
+        return redirect('all')
+    return render_template('unionform.html',form=form, edit=0)
 
 @app.route('/workplace/new', methods=['GET', 'POST'])
 @login_required
@@ -66,8 +66,8 @@ def workplaceNew():
         newWorkplace.save()
 
         #return redirect(url_for('union',unionID=newUnion.id))
-        return redirect('new')
-    return render_template('workplaceform.html',form=form)
+        return redirect('all')
+    return render_template('workplaceform.html', form=form, edit=0)
 
 @app.route('/union/display/<unionid>', methods=['GET', 'POST'])
 @login_required
@@ -99,3 +99,96 @@ def map():
     unions = Union.objects()
     workplaces = Workplace.objects()
     return render_template('map.html', unions=unions, workplaces=workplaces)
+
+@app.route('/union/edit/<unionid>', methods=['GET', 'POST'])
+@login_required
+def unionEdit(unionid):
+    form = UnionForm()
+    if form.validate_on_submit():
+        editUnion = Union.objects.get(id=unionid)
+        editUnion.update(
+            unionname = form.unionname.data,
+            branchname = form.branchname.data,
+            company = form.company.data,
+            industry = form.industry.data,
+            bio = form.bio.data,
+            address = form.address.data,
+            city = form.city.data,
+            state = form.state.data,
+            zipcode = form.zipcode.data,
+            lat = form.lat.data,
+            lon = form.lon.data,
+            unionizedate = form.unionizedate.data,
+            unionrep = form.unionrep.data,
+            conemail = form.conemail.data,
+            conpnumber = form.conpnumber.data,
+            author = current_user.id,
+            modifydate = dt.datetime.utcnow,
+        )
+        
+
+        #return redirect(url_for('union',unionID=newUnion.id))
+        return redirect('/union/all')
+    editUnion = Union.objects.get(id=unionid)    
+    form.unionname.data = editUnion.unionname
+    form.branchname.data = editUnion.branchname
+    form.company.data = editUnion.company
+    form.industry.data = editUnion.industry
+    form.bio.data = editUnion.bio
+    form.address.data = editUnion.address
+    form.city.data = editUnion.city
+    form.state.data = editUnion.state
+    form.zipcode.data = editUnion.zipcode
+    form.lat.data = editUnion.lat
+    form.lon.data = editUnion.lon
+    form.unionizedate.data = editUnion.unionizedate
+    form.unionrep.data = editUnion.unionrep
+    form.conemail.data = editUnion.conemail
+    form.conpnumber.data = editUnion.conpnumber
+
+    return render_template('unionform.html',form=form, edit=1)
+
+@app.route('/workplace/edit/<workplaceid>', methods=['GET', 'POST'])
+@login_required
+def workplaceEdit(workplaceid):
+    form = WorkplaceForm()
+    if form.validate_on_submit():
+        editWorkplace = Workplace.objects.get(id=workplaceid)
+        editWorkplace.update(
+            branchname = form.branchname.data,
+            company = form.company.data,
+            industry = form.industry.data,
+            bio = form.bio.data,
+            address = form.address.data,
+            city = form.city.data,
+            state = form.state.data,
+            zipcode = form.zipcode.data,
+            lat = form.lat.data,
+            lon = form.lon.data,
+            conemail = form.conemail.data,
+            conpnumber = form.conpnumber.data,
+            author = current_user.id,
+            modifydate = dt.datetime.utcnow,
+        )
+        
+
+        #return redirect(url_for('union',unionID=newUnion.id))
+        return redirect('/workplace/all')
+    editWorkplace = Workplace.objects.get(id=workplaceid)    
+    form.branchname.data = editWorkplace.branchname
+    form.company.data = editWorkplace.company
+    form.industry.data = editWorkplace.industry
+    form.bio.data = editWorkplace.bio
+    form.address.data = editWorkplace.address
+    form.city.data = editWorkplace.city
+    form.state.data = editWorkplace.state
+    form.zipcode.data = editWorkplace.zipcode
+    form.lat.data = editWorkplace.lat
+    form.lon.data = editWorkplace.lon
+    form.conemail.data = editWorkplace.conemail
+    form.conpnumber.data = editWorkplace.conpnumber
+
+    return render_template('workplaceform.html',form=form, edit=1)
+
+
+

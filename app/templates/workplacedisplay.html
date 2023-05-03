@@ -7,6 +7,11 @@
 <div class='col bg-secondary rounded text-white border border-dark'>
     <h1 style=font-size:100px>{{workplace.branchname}}</h1>
 </div>
+{% if workplace.author == current_user %}
+<div class='text-end'>
+    <a class='btn border border-secondary text-secondary text-center' role='button' href='/workplace/edit/{{workplace.id}}'>Edit Workplace</a>
+</div>
+{% endif %}
 </br>
 <div class='container'>
 <div class='row'>

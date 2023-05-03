@@ -2,9 +2,17 @@
 {% extends "base.html" %}
 
 {% block body %}
+    {% if edit == 0%}
     <div class='col bg-secondary rounded text-white border border-dark'>
         <h1 style=font-size:100px>Upload New Workplace</h1>
     </div>
+    {% endif %}
+
+    {% if edit == 1%}
+    <div class='col bg-secondary rounded text-white border border-dark'>
+        <h1 style=font-size:100px>Edit Workplace</h1>
+    </div>
+    {% endif %}
 
         <!--List all errors in a group at the top-->
         {% for field in form.errors %}
@@ -41,7 +49,7 @@
             </p>
             <p>
                 {{ form.bio.label }} <br>
-                {{ form.bio(size=64) }}
+                {{ form.bio(rows='5',cols='63') }}
                 {% for error in form.bio.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}

@@ -3,8 +3,17 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<div class='col bg-secondary rounded text-white border border-dark'>
-    <h1 style=font-size:100px>Unions</h1>
+<div class='container'>
+<div class='row'>
+<div class='col bg-secondary rounded-start text-white border border-end-0 border-dark d-grid gap-2 d-md-flex'>
+    <h1 style=font-size:100px>
+        Unions
+    </h1>
+</div>
+<div class='col bg-secondary border border-start-0 border-dark d-grid gap-2 d-md-flex justify-content-md-end rounded-end p-4'>
+    <a class='btn border border-dark text-dark text-center p-4' role='button' href='new'>Upload New Union</a>
+</div>
+</div>
 </div>
 </br>
 <div class='container'>
