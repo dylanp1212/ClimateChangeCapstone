@@ -13,8 +13,10 @@
     <script type="text/javascript">
         
         {% for union in unions %}
-            var map = L.map('map').setView([{{union.lat}}, {{union.lon}}], 12);
+            var startLat = {{union.lat}}
+            var startLon = {{union.lon}}
         {% endfor %}
+        var map = L.map('map').setView([startLat, startLon], 12);
     
         var layer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'

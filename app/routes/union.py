@@ -38,6 +38,7 @@ def unionNew():
         newUnion.save()
 
         #return redirect(url_for('union',unionID=newUnion.id))
+        flash('Union uploaded.')
         return redirect('all')
     return render_template('unionform.html',form=form, edit=0)
 
@@ -66,6 +67,7 @@ def workplaceNew():
         newWorkplace.save()
 
         #return redirect(url_for('union',unionID=newUnion.id))
+        flash('Workplace uploaded.')
         return redirect('all')
     return render_template('workplaceform.html', form=form, edit=0)
 
@@ -128,6 +130,7 @@ def unionEdit(unionid):
         
 
         #return redirect(url_for('union',unionID=newUnion.id))
+        flash('Union updated.')
         return redirect('/union/all')
     editUnion = Union.objects.get(id=unionid)    
     form.unionname.data = editUnion.unionname
@@ -173,6 +176,7 @@ def workplaceEdit(workplaceid):
         
 
         #return redirect(url_for('union',unionID=newUnion.id))
+        flash('Workplace updated.')
         return redirect('/workplace/all')
     editWorkplace = Workplace.objects.get(id=workplaceid)    
     form.branchname.data = editWorkplace.branchname
@@ -190,5 +194,21 @@ def workplaceEdit(workplaceid):
 
     return render_template('workplaceform.html',form=form, edit=1)
 
+@app.route('/union/delete/pleasenobodyhackthis/<unionid>', methods=['GET', 'POST'])
+@login_required
+def deleteUnion(unionid):
+    unionDelete = Union.objects.get(id=unionid)
+    unionDelete.delete()
+    flash('Union deleted.')
 
+    return redirect('/union/all')
+
+@app.route('/workplace/delete/pleasenobodyhackthis/<workplaceid>', methods=['GET', 'POST'])
+@login_required
+def deleteWorkplace(workplaceid):
+    workplaceDelete = Workplace.objects.get(id=workplaceid)
+    workplaceDelete.delete()
+    flash('Workplace deleted.')
+
+    return redirect('/workplace/all')
 
